@@ -4,7 +4,7 @@ import User from "../models/User.js";
 import { trusted } from "mongoose";
 
 const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+    return jwt.sign({ _id: id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 };
 
 export const registerUser = async (req, res) => {
@@ -68,7 +68,7 @@ export const loginUser = async (req, res) => {
 
 export const getProfile = async (req, res) => {
     try {
-        const user = await User.findById(req.user.id);
+        const user = await User.findById(req.user._id);
         if (user) {
             res.json({
                 _id: user._id,

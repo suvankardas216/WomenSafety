@@ -11,4 +11,7 @@ const sosLogSchema = new mongoose.Schema({
     resolvedAt: { type: Date }
 });
 
+
+sosLogSchema.index({ user: 1, triggeredAt: -1 });
+
 export default mongoose.model("SosLog", sosLogSchema);
